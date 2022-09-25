@@ -3,7 +3,7 @@
 In this Document we will start with VirtualBox and Oracle Linux 8.6 installation, then move to apply the prerequisites for both GI and DB, after that we going to proceed to Oracle Grid Infrastructure 19c installation with ASM then Oracle 19.3 Database software only installation, Once we finish the installation, we will create database.
 
 ## Table of Contents
-___
+
 - [[ Oracle Complete Scenario ] GI 19c [ASM] DB 19c on [ Oracle Linux 8.6 ]](#-oracle-complete-scenario--gi-19c-asm-db-19c-on--oracle-linux-86-)
   - [**Requirements:*](#requirements)
   - [Installing VirtualBox.](#installing-virtualbox)
@@ -20,7 +20,7 @@ ___
   - [Verifying the installation.](#verifying-the-installation)
 
 ## **Requirements:*
-___
+
 1. [Oracle Linux 8.6 ISO](https://yum.oracle.com/ISOS/OracleLinux/OL8/u6/x86_64/OracleLinux-R8-U6-x86_64-dvd.iso).
 2. [ASMLib8](https://www.oracle.com/linux/downloads/linux-asmlib-v8-downloads.html) and [oracleasm-support](ttps://public-yum.oracle.com/repo/OracleLinux/OL8/addons/x86_64/getPackage/oracleasm-support-2.1.12-1.el8.x86_64.rpm).
 3. [Oracle 19.3 Grid Infrastructure (GI)](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html#license-lightbox).
@@ -35,7 +35,7 @@ ___
 
 
 ## Installing VirtualBox.
-___
+
 1. Search "Virtual Box" in Google and click in first Download option:  
     ![Virtual Box Google Search](assets/virtualbox/capture_18-09-22_17-47-36.png)
 2. In Platform Packages select Windows Hosts  
@@ -65,7 +65,7 @@ ___
   
 ## Installing OEL 8.6 in VirtualBox.
 ### Creating Virtual Machine Instance.
-___
+
 1. Click on New.
     ![New VM Virtual Box](assets/os/instance/capture_24-09-22_19-19-09.png)
 2. Change the name to "OEL86" and click Next.
@@ -125,7 +125,7 @@ ___
     ![Start original instance](assets/os/instance/capture_24-09-22_19-32-12.png)
 
 ### Installing OEL 8.6
-___
+
 1. Select with Intro, Install Oracle Linux 8.6.0
     ![](assets/os/oel86/capture_24-09-22_20-13-12.png)
 2. The language must be English. Click on Continue.
@@ -218,7 +218,7 @@ ___
     ![](assets/os/oel86/capture_24-09-22_21-03-24.png)
 
 ### Installing Guest Additions.
-___
+
 1. Open a terminal.
 ![](assets/os/oel86/capture_24-09-22_21-03-38.png)
 2. Update all packages with the following command.
@@ -271,7 +271,7 @@ ___
     ![](assets/os/oel86/capture_24-09-22_21-44-29.png)
 
 ## Prepare the OS for the Installation [Prerequisites]
-___
+
 1. Start the original instance and open a terminal.
 2. Check the Internet connectivity using:
     ```bash
@@ -498,7 +498,7 @@ ___
 27. At this point you want to create a Snapshot or a clone of the instance.
 
 ## Create and Tag ASM Disks.
-___
+
 1. Download [ASMLib8](https://www.oracle.com/linux/downloads/linux-asmlib-v8-downloads.html)
 
 2. Download [oracleasm-support](https://public-yum.oracle.com/repo/OracleLinux/OL8/addons/x86_64/getPackage/oracleasm-support-2.1.12-1.el8.x86_64.rpm)
@@ -575,7 +575,7 @@ ___
     ![](assets/grid/disks/capture_25-09-22_01-28-15.png)
 
 ## Installing Oracle Grid Infrastructure 19c Software 
-___
+
 1. Switch to the `grid` user and input the password.
     ```bash
     su - grid
@@ -690,7 +690,7 @@ ___
     ![](assets/grid/software/capture_25-09-22_01-56-03.png)
 
 ### Creating FRA Disk Group.
-___
+
 1. Open a terminal and switch to `grid` user and input the password.
    ```bash
    su - grid
@@ -722,7 +722,7 @@ ___
 7. You might want to create a Snapshot or a clone of the instance before installing Oracle Database.
 
 ## Installing Oracle DB 19c software Only
-___
+
 1. Switch to the `oracle` user and input the password.
     ```bash
     su - oracle
@@ -805,7 +805,7 @@ ___
     ![](assets/db/software/capture_25-09-22_14-02-37.png)
 
 ## Create database using dbca.
-___
+
 
 1. Open the DataBase Configuration Assistant.
    ```bash
@@ -866,7 +866,7 @@ ___
     ![](assets/db/instance/capture_25-09-22_15-07-52.png)
 
 ## Verifying the installation.
-___
+
 1. Eviroment.
    ```bash
    . oraenv
