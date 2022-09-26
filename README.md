@@ -22,7 +22,7 @@ ___
 ## **Requirements:*
 ___
 1. [Oracle Linux 8.6 ISO](https://yum.oracle.com/ISOS/OracleLinux/OL8/u6/x86_64/OracleLinux-R8-U6-x86_64-dvd.iso).
-2. [ASMLib8](https://www.oracle.com/linux/downloads/linux-asmlib-v8-downloads.html) and [oracleasm-support](ttps://public-yum.oracle.com/repo/OracleLinux/OL8/addons/x86_64/getPackage/oracleasm-support-2.1.12-1.el8.x86_64.rpm).
+2. [ASMLib8](https://www.oracle.com/linux/downloads/linux-asmlib-v8-downloads.html) and [oracleasm-support](https://public-yum.oracle.com/repo/OracleLinux/OL8/addons/x86_64/getPackage/oracleasm-support-2.1.12-1.el8.x86_64.rpm).
 3. [Oracle 19.3 Grid Infrastructure (GI)](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html#license-lightbox).
 4. [Oracle 19.3 Database (DB)](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html#license-lightbox).
 5. [VBox](https://www.virtualbox.org/wiki/Downloads) installed.
