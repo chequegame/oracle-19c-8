@@ -292,7 +292,12 @@ ___
     ![](assets/os/prerequisites/capture_25-09-22_00-37-55.png)  
     ![](assets/os/prerequisites/capture_25-09-22_00-38-46.png)
 
-5. This step is optional if you want to update the system:  
+5. Login with root and input the password.  
+    ```bash
+    sudo -i
+    ```  
+
+6. This step is optional if you want to update the system:  
     ```bash 
     dnf check-update
     dnf update 
@@ -301,11 +306,6 @@ ___
     ![](assets/os/prerequisites/capture_25-09-22_00-39-14.png)  
     ![](assets/os/prerequisites/capture_25-09-22_00-39-25.png)  
     ![](assets/os/prerequisites/capture_25-09-22_00-39-40.png)  
-
-6. Login with root and input the password.  
-    ```bash
-    sudo -i
-    ```  
 
 7. Append the recently created groups by the installer to the `oracle` user.  
     ```bash
