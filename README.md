@@ -3,7 +3,9 @@
 In this Document we will start with VirtualBox and Oracle Linux 8.6 installation, then move to apply the prerequisites for both GI and DB, after that we going to proceed to Oracle Grid Infrastructure 19c installation with ASM then Oracle 19.3 Database software only installation, Once we finish the installation, we will create database.
 
 ## Table of Contents
+
 ___
+
 - [[ Oracle Complete Scenario ] GI 19c [ASM] DB 19c on [ Oracle Linux 8.6 ]](#-oracle-complete-scenario--gi-19c-asm-db-19c-on--oracle-linux-86-)
   - [**Requirements:*](#requirements)
   - [Installing VirtualBox.](#installing-virtualbox)
@@ -20,22 +22,24 @@ ___
   - [Verifying the installation.](#verifying-the-installation)
 
 ## **Requirements:*
+
 ___
+
 1. [Oracle Linux 8.6 ISO](https://yum.oracle.com/ISOS/OracleLinux/OL8/u6/x86_64/OracleLinux-R8-U6-x86_64-dvd.iso).
 2. [ASMLib8](https://www.oracle.com/linux/downloads/linux-asmlib-v8-downloads.html) and [oracleasm-support](https://public-yum.oracle.com/repo/OracleLinux/OL8/addons/x86_64/getPackage/oracleasm-support-2.1.12-1.el8.x86_64.rpm).
-3. [Oracle 19.3 Grid Infrastructure (GI)](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html#license-lightbox).
-4. [Oracle 19.3 Database (DB)](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html#license-lightbox).
+3. [Oracle 19.3 Grid Infrastructure (GI)](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html).
+4. [Oracle 19.3 Database (DB)](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html).
 5. [VBox](https://www.virtualbox.org/wiki/Downloads) installed.
 6. Virtual Machine Resource allocation:
-   * 8 GB RAM (Minimum 4GB)
-   * 2 Cores [CPU]
-   * 80 GB Virtual Disk for OS
-   * 8 x 5GB Virtual Disk for ASM
+   - 8 GB RAM (Minimum 4GB)
+   - 2 Cores [CPU]
+   - 80 GB Virtual Disk for OS
+   - 8 x 5GB Virtual Disk for ASM
 
+## Installing VirtualBox
 
-
-## Installing VirtualBox.
 ___
+
 1. Search "Virtual Box" in Google and click in first Download option:  
     ![Virtual Box Google Search](assets/virtualbox/capture_18-09-22_17-47-36.png)
 2. In Platform Packages select Windows Hosts  
@@ -59,13 +63,15 @@ ___
     ![Virtual Box Installer 6](assets/virtualbox/capture_18-09-22_17-49-24.png)
 11. The installation completes.  
     ![Virtual Box Installer Finished](assets/virtualbox/capture_18-09-22_17-49-40.png)
-12.  Virtual Box is installed.  
+12. Virtual Box is installed.  
     ![Virtual Box Installer 1](assets/virtualbox/capture_18-09-22_17-49-56.png)
   
-  
-## Installing OEL 8.6 in VirtualBox.
-### Creating Virtual Machine Instance.
+## Installing OEL 8.6 in VirtualBox
+
+### Creating Virtual Machine Instance
+
 ___
+
 1. Click on New.
     ![New VM Virtual Box](assets/os/instance/capture_24-09-22_19-19-09.png)
 2. Change the name to "OEL86" and click Next.  
@@ -113,7 +119,7 @@ ___
     ![8 disks created](assets/os/instance/capture_24-09-22_19-29-38.png)
 24. In Network > Adapter 1, select Bridged Adapter and the network interface in which you have internet access.  
     ![Network Adapter 1](assets/os/instance/capture_24-09-22_19-30-07.png)
-25.  In Adapter 2, use the same settings as the previous step. Cick on OK.  
+25. In Adapter 2, use the same settings as the previous step. Cick on OK.  
     ![Network Adapter 2](assets/os/instance/capture_24-09-22_19-30-29.png)
 26. In the VM Instance, right click on it and select Clone.  
     ![Clone Option](assets/os/instance/capture_24-09-22_19-31-02.png)
@@ -125,7 +131,9 @@ ___
     ![Start original instance](assets/os/instance/capture_24-09-22_19-32-12.png)
 
 ### Installing OEL 8.6
+
 ___
+
 1. Select with Intro, Install Oracle Linux 8.6.0.  
     ![](assets/os/oel86/capture_24-09-22_20-13-12.png)
 2. The language must be English. Click on Continue.  
@@ -152,14 +160,13 @@ ___
     - Legacy Unix Compatibility.
     - Container Management.
     - Development Tools.
-    - .NET Core Development.
     - Graphical Administration Tools.
     - RPM Development Tools.
     - Security Tools.
     - System Tools.  
   Click on Done.  
     ![](assets/os/oel86/capture_24-09-22_20-24-04.png)
-11.  Click on Installation Destination.  
+11. Click on Installation Destination.  
     ![](assets/os/oel86/capture_24-09-22_20-24-31.png)
 12. Select the 80GB hard disk. Check the Custom checkbox. Click on Done.  
     ![](assets/os/oel86/capture_24-09-22_20-24-45.png)
@@ -169,11 +176,11 @@ ___
     ![](assets/os/oel86/capture_24-09-22_20-25-30.png)
 15. Click on the "+" Button.  
     ![](assets/os/oel86/capture_24-09-22_20-27-47.png)
-16.  Select swap as the Mount Point and 8 GiB as the Desired Capactity. Click on Add mount point.  
+16. Select swap as the Mount Point and 8 GiB as the Desired Capactity. Click on Add mount point.  
     ![](assets/os/oel86/capture_24-09-22_20-28-13.png)
 17. Click on the "+" Button.  
     ![](assets/os/oel86/capture_24-09-22_20-28-28.png)
-18.   Select / as the Mount Point and leave blank the Desired Capactity. Click on Add mount point.  
+18. Select / as the Mount Point and leave blank the Desired Capactity. Click on Add mount point.  
     ![](assets/os/oel86/capture_24-09-22_20-28-42.png)
 19. With the 3 partitions created. Click on Done.  
     ![](assets/os/oel86/capture_24-09-22_20-28-59.png)
@@ -194,7 +201,7 @@ ___
     ![](assets/os/oel86/capture_24-09-22_20-31-31.png)
 27. Click on Root Password.  
     ![](assets/os/oel86/capture_24-09-22_20-31-47.png)
-28.  Set `oracle` as the password. Click twice on Done.  
+28. Set `oracle` as the password. Click twice on Done.  
     ![](assets/os/oel86/capture_24-09-22_20-32-01.png)
 29. Click on Begin Installation.  
     ![](assets/os/oel86/capture_24-09-22_20-33-24.png)
@@ -210,21 +217,22 @@ ___
     ![](assets/os/oel86/capture_24-09-22_21-00-28.png)
 35. Click on Next.  
     ![](assets/os/oel86/capture_24-09-22_21-00-59.png)
-36. Input your Full Name and `oracle` as the Username. Click on Next.  
-    ![](assets/os/oel86/capture_24-09-22_21-02-07.png)
+36. Input your Full Name and username. Click on Next.  
+    ![](assets/os/oel86/capture_02-10-22_13-26-05.png)
 37. Click on Start Using Oracle Linux Server.  
     ![](assets/os/oel86/capture_24-09-22_21-03-03.png)
 38. Close the Getting Started window.  
     ![](assets/os/oel86/capture_24-09-22_21-03-24.png)
-
-### Installing Guest Additions.
 ___
+
 1. Open a terminal.  
 ![](assets/os/oel86/capture_24-09-22_21-03-38.png)
 2. Update all packages with the following command.  
+
    ```
-   sudo yum update
+   sudo yum update -y
    ```  
+
     ![](assets/os/oel86/capture_24-09-22_21-04-00.png)
 3. Input `oracle` as root password.  
     ![](assets/os/oel86/capture_24-09-22_21-04-23.png)
@@ -239,7 +247,7 @@ ___
     ![](assets/os/oel86/capture_24-09-22_21-25-50.png)
 8. In my case I will use the version `kernel-uek-devel.x86_64`.  
     ![](assets/os/oel86/capture_24-09-22_21-26-11.png)
-9. Issue the command `sudo yum install kernel-uek-devel.x86_64`.  
+9. Issue the command `sudo yum install kernel-uek-devel.x86_64 -y`.  
     ![](assets/os/oel86/capture_24-09-22_21-27-27.png)
 10. Input the password for root.  
     ![](assets/os/oel86/capture_24-09-22_21-27-40.png)
@@ -247,9 +255,9 @@ ___
     ![](assets/os/oel86/capture_24-09-22_21-27-58.png)
 12. Installation completed.  
     ![](assets/os/oel86/capture_24-09-22_21-29-14.png)
-13.  Issue the command `sudo reboot` to reboot the system.  
+13. Issue the command `sudo reboot` to reboot the system.  
     ![](assets/os/oel86/capture_24-09-22_21-39-41.png)
-14.  Click on VirtualBox Devices and Insert Guest Additions image.  
+14. Click on VirtualBox Devices and Insert Guest Additions image.  
     ![](assets/os/oel86/capture_24-09-22_21-35-10.png)
 15. Click on Run.  
     ![](assets/os/oel86/capture_24-09-22_21-35-41.png)
@@ -270,109 +278,133 @@ ___
 24. Click on Full Clone checkbox and Clone.  
     ![](assets/os/oel86/capture_24-09-22_21-44-29.png)
 
+25. Start the original instance.  
+26. Go to Files app.  
+    ![](assets/os/oel86/capture_02-10-22_13-52-11.png)  
+27. Unmount the VBox Guest Additions cd image clicking on the icon.  
+    ![](assets/os/oel86/capture_02-10-22_13-52-20.png)  
 ## Prepare the OS for the Installation [Prerequisites]
+
 ___
-1. Start the original instance and open a terminal.  
-2. Check the Internet connectivity using:  
+
+1. Open a terminal.  
+2. Issue the following command and save or remember the interface IP.  
+   ```bash
+   ifconfig
+   ```  
+    ![](assets/os/prerequisites/capture_02-10-22_13-52-57.png)  
+3. Edit the host file, append the following. Use your IP and the domain name you configured at installation.    
+    ![](assets/os/prerequisites/capture_02-10-22_13-53-26.png)  
+    ```bash
+    sudo nano /etc/hosts
+    ```  
+    ![](assets/os/prerequisites/capture_02-10-22_13-53-51.png)  
+4. Check the Internet connectivity using:  
+
     ```bash
     ping www.google.com -c 4
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-36-51.png)
 
-3. Check cache to download the metadata from online repo:  
+5. Check cache to download the metadata from online repo:  
+
     ```bash
     dnf makecache
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-37-22.png)
 
-4. Install prerequisites, enter the password:  
+6. Install prerequisites, enter the password:  
+
     ```bash
     sudo dnf install oracle-database-preinstall-19c -y 
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-37-55.png)  
     ![](assets/os/prerequisites/capture_25-09-22_00-38-46.png)
 
-5. Login with root and input the password.  
+7. Login with root and input the password.  
+
     ```bash
     sudo -i
     ```  
 
-6. This step is optional if you want to update the system:  
-    ```bash 
-    dnf check-update
-    dnf update 
-    dnf clean all
-    ```  
-    ![](assets/os/prerequisites/capture_25-09-22_00-39-14.png)  
-    ![](assets/os/prerequisites/capture_25-09-22_00-39-25.png)  
-    ![](assets/os/prerequisites/capture_25-09-22_00-39-40.png)  
+8. Create OS groups for asm administration and operation:  
 
-7. Append the recently created groups by the installer to the `oracle` user.  
-    ```bash
-    usermod -a -G oinstall,racdba,dba,oper,backupdba,dgdba,kmdba oracle
-    ```  
-    ![](assets/os/prerequisites/capture_25-09-22_00-41-18.png)  
-
-8. Verify the groups of user `oracle`.  
-    ```bash
-    id oracle
-    ```  
-    ![](assets/os/prerequisites/capture_25-09-22_00-43-38.png)  
-
-9.  Create OS groups for asm administration and operation:  
     ```bash
     groupadd -g 54327 asmdba
     groupadd -g 54328 asmoper
     groupadd -g 54329 asmadmin
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-44-01.png)  
 
-10. Add as secondary group to oracle user:  
+9.  Add as secondary group to oracle user:  
+
     ```bash
-    usermod -a -G asmadmin,asmdba oracle
+    usermod -a -G asmadmin,asmdba,wheel oracle
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-44-25.png)  
 
-11. Create Grid user:  
+10. Create Grid user:  
+
     ```bash
-    useradd -u 54331 -g oinstall -G dba,asmdba,asmadmin,asmoper,racdba grid
+    useradd -u 54331 -g oinstall -G dba,asmdba,asmadmin,asmoper,racdba,wheel grid
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-45-08.png)  
 
-12. Change the password for Oracle and Grid user to `oracle`:  
+11. Change the password for Oracle and Grid user to `oracle`:  
+
     ```bash
     passwd oracle
+    ```  
+
+    ```bash
     passwd grid
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-45-35.png)  
     ![](assets/os/prerequisites/capture_25-09-22_00-45-57.png)  
 
-13. Create the Directories for the Oracle Grid installation  
+12. Create the Directories for the Oracle Grid installation  
+
     ```bash
     mkdir -p /u01/19c/oracle_base
     mkdir -p /u01/19c/oracle_base/oracle/db_home
     chown -R oracle:oinstall /u01
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-46-40.png)  
 
-14. Create the Directories for the Oracle Database installation.  
+13. Create the Directories for the Oracle Database installation.  
+
     ```bash
     mkdir -p /u01/19c/grid_base
     mkdir -p /u01/19c/grid_home
     chown -R grid:oinstall /u01/19c/grid_base /u01/19c/grid_home
     chmod -R 775 /u01
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-47-01.png)  
 
-15. Switch to the `grid` user and edit the Grid `.bash_profile`, before edit the file I will take backup for it first.  
+14. Switch to the `grid` user and edit the Grid `.bash_profile`, before edit the file I will take backup for it first.  
+
     ```bash
     su - grid
+    ```  
+
+    ```bash
     cd /home/grid
     cp .bash_profile .bash_profile.bkp
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-47-31.png)  
 
-16. Copy and paste this to grid home directory.  
+15. Copy and paste this to grid home directory.  
+
     ```bash
     cat > /home/grid/.grid19c_env <<EOF
     # User specific environment and startup programs
@@ -388,26 +420,41 @@ ___
     umask 022
     EOF
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-47-59.png)  
 
-17. Apply the profile for the current session and check the environment variables:  
+16. Apply the profile for the current session and check the environment variables:  
+
     ```bash
     echo "source ~/.grid19c_env" >> ~/.bash_profile
     exit
+    ```
+
+    ```bash
     su - grid
+    ```  
+
+    ```bash
     env | grep -i oracle
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-51-37.png)  
 
-18. Switch to `oracle` user and backup the `.bash_profile` :  
+17. Switch to `oracle` user and backup the `.bash_profile` :  
+
     ```bash
     su - oracle 
+    ```  
+
+    ```bash
     cp .bash_profile .bash_profile.bkp
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-52-32.png)  
     ![](assets/os/prerequisites/capture_25-09-22_00-52-51.png)  
 
-19. Create new bash profile file copy the below script to your terminal and press enter:  
+18. Create new bash profile file copy the below script to your terminal and press enter:  
+
     ```bash
     cat > /home/oracle/.db19c_env <<EOF
     # specific environment and startup programs
@@ -431,89 +478,117 @@ ___
     umask 022
     EOF
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-53-21.png)  
 
-20. Test.  
+19. Test.  
+
     ```bash
     . .db19c_env
     env | grep -i oracle
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-57-24.png)  
 
-21. Apply the profile.  
+20. Apply the profile.  
+
     ```bash
     echo "source ~/.db19c_env" >> ~/.bash_profile
     exit
-    su - oracle
-    env | grep -i oracle
     ```  
+
+    ```bash
+    su - oracle
+    ```  
+
+    ```
+    env | grep -i oracle
+    ```
+
     ![](assets/os/prerequisites/capture_25-09-22_00-57-54.png)  
 
-22. Login with root and input the password.  
+21. Login with root and input the password.  
+
     ```bash
     sudo -i
     ```  
 
-23. Check the NTP service  
+22. Check the NTP service  
+
     ```bash
     systemctl status chronyd
     ```  
 
-24. If the service is inactive, issue the following commands:  
+23. If the service is inactive, issue the following commands:  
+
     ```bash
     systemctl start chronyd
     systemctl enable chronyd
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_00-58-46.png)  
 
-25. Set secure linux to permissive  
+24. Set secure linux to permissive  
 
     ```bash
     # change SELINUX=enforcing to SELINUX=permissive
     sed -i s/SELINUX=enforcing/SELINUX=permissive/g /etc/selinux/config
     cat /etc/selinux/config
+    ```  
 
+    ```bash
     # create limitation in security forlder for grid user 
     cp /etc/security/limits.d/oracle-database-preinstall-19c.conf /etc/security/limits.d/grid-database-preinstall-19c.conf
+    ```  
 
+    ```bash
     # rename oracle with grid in this file grid-database-preinstall-19c.conf
     # use vim 
     vim /etc/security/limits.d/grid-database-preinstall-19c.conf
-    ```  
+    ```
+
     ```vim
     :%s/oracle/grid/g  
     :x
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_01-00-34.png)  
     ![](assets/os/prerequisites/capture_25-09-22_01-01-05.png)  
     ![](assets/os/prerequisites/capture_25-09-22_01-01-26.png)  
     ![](assets/os/prerequisites/capture_25-09-22_01-01-53.png)  
     ![](assets/os/prerequisites/capture_25-09-22_01-02-10.png)  
 
-26. Disable Linux firewall [ref-link](https://www.ateam-oracle.com/opening-ports-in-linux-7-firewalls-for-oracle-analytics-cloud-access-to-databases-and-remote-data-connector).  
+25. Disable Linux firewall [ref-link](https://www.ateam-oracle.com/opening-ports-in-linux-7-firewalls-for-oracle-analytics-cloud-access-to-databases-and-remote-data-connector).  
+
     ```bash
     systemctl stop firewalld
     systemctl disable firewalld
     ```  
+
     ![](assets/os/prerequisites/capture_25-09-22_01-02-45.png)  
 
-27. At this point you want to create a Snapshot or a clone of the instance.  
+26. At this point you want to create a Snapshot or a clone of the instance.  
 
-## Create and Tag ASM Disks.
+## Create and Tag ASM Disks
+
 ___
+
 1. Download [ASMLib8](https://www.oracle.com/linux/downloads/linux-asmlib-v8-downloads.html).  
 
 2. Download [oracleasm-support](https://public-yum.oracle.com/repo/OracleLinux/OL8/addons/x86_64/getPackage/oracleasm-support-2.1.12-1.el8.x86_64.rpm).  
-   
+
 3. Go to the downloads folder.
+
     ```bash
     cd Downloads
     ```  
 
 4. Install the packages with the following command.  
+
     ```bash
-    sudo yum localinstall ./oracleasm-support-2.1.12-1.el8.x86_64.rpm ./oracleasmlib-2.0.17-1.el8.x86_64.rpm
+    sudo yum localinstall ./oracleasm-support-2.1.12-1.el8.x86_64.rpm ./oracleasmlib-2.0.17-1.el8.x86_64.rpm -y
     ```  
+
     **Versions may vary*
     ![](assets/grid/disks/capture_25-09-22_01-11-10.png)  
     ![](assets/grid/disks/capture_25-09-22_01-11-21.png)  
@@ -521,31 +596,40 @@ ___
 
 5. Reboot the system.  
 6. Login with root and input the password.  
+
     ```bash
     sudo -i
     ```  
+
     ![](assets/grid/disks/capture_25-09-22_01-19-13.png)
 7. Start configuring ASM with the following command.  
+
     ```bash
     oracleasm configure -i
     ```  
+
     ![](assets/grid/disks/capture_25-09-22_01-19-46.png)  
-    
+
 8. Issue the following command:  
+
     ```bash
     oracleasm init
     ```  
+
     ![](assets/grid/disks/capture_25-09-22_01-20-18.png)  
 
 9. List the disk to tag:  
+
     ```bash
     cd /dev/
     pwd
     ls | grep sd
     ```  
+
     ![](assets/grid/disks/capture_25-09-22_01-21-00.png)  
 
 10. Format the disks from *b* to *i*:  
+
     ```bash
     fdisk /dev/sd*i*
     p
@@ -556,262 +640,366 @@ ___
     [intro]
     w
     ```  
+
+    ```bash
+    fdisk /dev/sdb
+    fdisk /dev/sdc
+    fdisk /dev/sdd
+    fdisk /dev/sde
+    fdisk /dev/sdf
+    fdisk /dev/sdg
+    fdisk /dev/sdh
+    fdisk /dev/sdi
+    ```  
+
     ![](assets/grid/disks/capture_25-09-22_01-22-23.png)  
 
 11. Check the formated disks.  
+
     ```bash
     ls | grep sd
     ```  
+
     ![](assets/grid/disks/capture_25-09-22_01-26-01.png)  
 
 12. Tag the formatted disks as ASM Disks.  
+
     ```bash
-    oracleasm createdisk ASMDISKn /dev/sd*i*1
+    oracleasm createdisk ASMDISK1 /dev/sdb1
+    oracleasm createdisk ASMDISK2 /dev/sdc1
+    oracleasm createdisk ASMDISK3 /dev/sdd1
+    oracleasm createdisk ASMDISK4 /dev/sde1
+    oracleasm createdisk ASMDISK5 /dev/sdf1
+    oracleasm createdisk ASMDISK6 /dev/sdg1
+    oracleasm createdisk ASMDISK7 /dev/sdh1
+    oracleasm createdisk ASMDISK8 /dev/sdi1
     ```  
+
     ![](assets/grid/disks/capture_25-09-22_01-27-52.png)  
 
 13. Check the created ASM disks.  
+
     ```bash
     oracleasm listdisks
     ```  
+
     ![](assets/grid/disks/capture_25-09-22_01-28-15.png)  
 
-## Installing Oracle Grid Infrastructure 19c Software 
+## Changing Kernel Parameter Values
+
 ___
-1. Switch to the `grid` user and input the password.  
+
+1. Make sure you are root.
+
+   ```bash
+   sudo -i
+   ```  
+
+2. Apply the following configuration command.
+
+    ```bash
+    cat > /etc/sysctl.d/97-oracle-database-sysctl.conf <<EOF
+    fs.aio-max-nr = 1048576
+    fs.file-max = 6815744
+    kernel.shmall = 2097152
+    kernel.shmmax = 4294967295
+    kernel.shmmni = 4096
+    kernel.sem = 250 32000 100 128
+    net.ipv4.ip_local_port_range = 9000 65500
+    net.core.rmem_default = 262144
+    net.core.rmem_max = 4194304
+    net.core.wmem_default = 262144
+    net.core.wmem_max = 1048576
+    EOF
+    ```  
+
+3. Change the current values of the kernel parameters:
+
+    ```bash
+    /sbin/sysctl --system
+    ```  
+
+4. Reboot the system.
+
+   ```bash
+   reboot
+   ```  
+
+## Installing Oracle Grid Infrastructure 19c Software
+
+___
+
+1. Open a terminal and switch to the `grid` user and input the password.  
+
     ```bash
     su - grid
     ```  
+
     ![](assets/grid/software/capture_25-09-22_01-29-06.png)  
 
 2. Change to home directory.  
+
    ```bash
    cd $ORACLE_HOME
    ```  
+
    ![](assets/grid/software/capture_25-09-22_01-29-29.png)  
 
-3. Download the [Oracle Grid 19c Software](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html#license-lightbox) in the home directory (current directory).  
+3. Download the [Oracle Grid 19c Software](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html).  
     ![](assets/grid/software/capture_25-09-22_01-31-15.png)  
     ![](assets/grid/software/capture_25-09-22_01-31-25.png)  
     ![](assets/grid/software/capture_25-09-22_01-32-01.png)  
     ![](assets/grid/software/capture_25-09-22_01-32-11.png)  
     ![](assets/grid/software/capture_25-09-22_01-34-54.png)  
-    ![](assets/grid/software/capture_25-09-22_01-36-22.png)  
-    ![](assets/grid/software/capture_25-09-22_01-36-38.png)  
-    ![](assets/grid/software/capture_25-09-22_01-37-03.png)  
-    ![](assets/grid/software/capture_25-09-22_01-37-28.png)  
-    ![](assets/grid/software/capture_25-09-22_01-37-41.png)  
-    ![](assets/grid/software/capture_25-09-22_01-38-00.png)  
-    ![](assets/grid/software/capture_25-09-22_01-38-12.png)  
 
-4. Unzip the Oracle Grid 19c Software.  
+4. Open a Terminal New Window and go to the Downloads folder.  
+
+   ```bash
+   cd Downloads
+   ```
+
+5. Move the Oracle Grid 19c zip file to grid user home directory.  
+
+   ```bash
+   sudo mv LINUX.X64_193000_grid_home.zip /u01/19c/grid_home/
+   ```  
+
+6. Get back to the grid user terminal.  
+
+7. Unzip the Oracle Grid 19c Software.  
+
     ```bash
     unzip LINUX.X64_193000_grid_home.zip
     ```  
+
     ![](assets/grid/software/capture_25-09-22_12-15-17.png)  
 
-5. Issue the command:  
+8. Issue the command:  
+
     ```bash
     export CV_ASSUME_DISTID=OEL8.6
     ```  
+
     ![](assets/grid/software/capture_25-09-22_01-40-21.png)  
 
-6. Run the installer.  
+9. Run the installer.  
+
     ```bash
     ./gridSetup.sh
     ```  
+
     ![](assets/grid/software/capture_25-09-22_01-40-47.png)  
 
-7. If the output is:  
+10. If the output is:  
+
     ```bash
     ERROR: Unable to verify the graphical display setup. This application requires X display. Make sure that xdpyinfo exist under PATH variable.
     ```  
+
     Close the terminal and repeat steps 1, 2 and 5.  
 
-8.  Select Configure Oracle Grid Infrastructure for a Standalone Server (Oracle Restart).  
+11. Select Configure Oracle Grid Infrastructure for a Standalone Server (Oracle Restart).  
     ![](assets/grid/software/capture_25-09-22_12-20-12.png)  
 
-9.  Select 1MB size Allocation Unit.  
+12. Select 1MB size Allocation Unit.  
     ![](assets/grid/software/capture_25-09-22_12-21-17.png)  
-    
-10. Select Change Disk Discovery Path, input `/dev/oracleasm/disks` and click on OK.  
+
+13. Select Change Disk Discovery Path, input `/dev/oracleasm/disks` and click on OK.  
     ![](assets/grid/software/capture_25-09-22_12-21-39.png)  
     ![](assets/grid/software/capture_25-09-22_12-22-13.png)  
 
-11. Select the first 4 disks and click Next.  
+14. Select the first 4 disks and click Next.  
     ![](assets/grid/software/capture_25-09-22_12-22-47.png)  
 
-12. Select the Use same password for these accouts checkbox. Input `oracle` as the password. Click on Next. Ignore the warning.  
+15. Select the Use same password for these accouts checkbox. Input `oracle` as the password. Click on Next. Ignore the warning.  
     ![](assets/grid/software/capture_25-09-22_12-23-29.png)  
     ![](assets/grid/software/capture_25-09-22_12-23-57.png)  
-    
-13. Click on Next.  
-    ![](assets/grid/software/capture_25-09-22_12-24-19.png)  
-
-14. Click on Next.  
-    ![](assets/grid/software/capture_25-09-22_12-24-35.png)  
-
-15. Click on Next.  
-    ![](assets/grid/software/capture_25-09-22_12-24-57.png)  
 
 16. Click on Next.  
-    ![](assets/grid/software/capture_25-09-22_12-25-21.png)  
+    ![](assets/grid/software/capture_25-09-22_12-24-19.png)  
 
 17. Click on Next.  
+    ![](assets/grid/software/capture_25-09-22_12-24-35.png)  
+
+18. Click on Next.  
+    ![](assets/grid/software/capture_25-09-22_12-24-57.png)  
+
+19. Click on Next.  
+    ![](assets/grid/software/capture_25-09-22_12-25-21.png)  
+
+20. Click on Next.  
     ![](assets/grid/software/capture_25-09-22_12-25-58.png)  
 
-18. Select the missing requisite and click on Fix and Check Again.  
+21. Select the missing requisite and click on Fix and Check Again.  
     ![](assets/grid/software/capture_25-09-22_01-48-26.png)  
 
-19. Copy the path to the script to execute.  
+22. Copy the path to the script to execute.  
     ![](assets/grid/software/capture_25-09-22_01-48-50.png)  
 
-20. Open a terminal and login with root.  
+23. Open a terminal and login with root.  
+
     ```bash
     sudo -i
     ```  
+
     ![](assets/grid/software/capture_25-09-22_01-49-06.png)  
 
-21. Paste the path to the script and execute it.  
+24. Paste the path to the script and execute it.  
     ![](assets/grid/software/capture_25-09-22_01-49-39.png)  
 
-22. Get back to the Grid Installation and Click on OK.  
+25. Get back to the Grid Installation and Click on OK.  
     ![](assets/grid/software/capture_25-09-22_01-49-49.png)  
 
-23. Click on Install.  
+26. Click on Install.  
     ![](assets/grid/software/capture_25-09-22_01-49-58.png)  
 
-24. If prompt to execute scripts, copy the paths to the scripts and run them in the root terminal.  
+27. If prompt to execute scripts, copy the paths to the scripts and run them in the root terminal.  
     ![](assets/grid/software/capture_25-09-22_01-51-30.png)  
     ![](assets/grid/software/capture_25-09-22_01-53-45.png)  
 
-25. Get back to the installation and click on OK.  
+28. Get back to the installation and click on OK.  
     ![](assets/grid/software/capture_25-09-22_01-54-33.png)  
 
-26. Installation is completed.  
+29. Installation is completed.  
     ![](assets/grid/software/capture_25-09-22_01-56-03.png)  
 
-### Creating FRA Disk Group.
-___
-1. Open a terminal and switch to `grid` user and input the password.  
-   ```bash
-   su - grid
-   ```  
-   ![](assets/grid/software/capture_25-09-22_12-56-50.png)  
-   
-2. Enviroment.  
-   ```bash
-   . oraenv
-   +ASM
-   ```  
-   ![](assets/grid/software/capture_25-09-22_13-01-43.png)  
+### Creating FRA Disk Group
 
-3. Open ASM Configuration Assistant.  
+___
+
+1. Open ASM Configuration Assistant.  
+
    ```bash
    asmca
    ```  
+
    ![](assets/grid/software/capture_25-09-22_13-02-01.png)  
 
-4. Expand Disk Groups. Click on Create.  
+2. Expand Disk Groups. Click on Create.  
     ![](assets/grid/software/capture_25-09-22_13-02-21.png)  
-   
-5. Use `FRA` as the Disk Group Name. Select External Redundancy. Select 1MB Allocation Unit Size. Select the 4 disks available. Finally Click on OK.  
+
+3. Use `FRA` as the Disk Group Name. Select External Redundancy. Select 1MB Allocation Unit Size. Select the 4 disks available. Finally Click on OK.  
    ![](assets/grid/software/capture_25-09-22_13-03-13.png)  
-   
-6. There will be 2 Disk Groups.  
+
+4. There will be 2 Disk Groups.  
    ![](assets/grid/software/capture_25-09-22_13-04-15.png)  
 
-7. You might want to create a Snapshot or a clone of the instance before installing Oracle Database.  
+5. You might want to create a Snapshot or a clone of the instance before installing Oracle Database.  
 
 ## Installing Oracle DB 19c software Only
+
 ___
+
 1. Switch to the `oracle` user and input the password.  
+
     ```bash
     su - oracle
     ```  
+
     ![](assets/db/software/capture_25-09-22_13-44-34.png)  
 
 2. Change to home directory.  
+
    ```bash
    cd $ORACLE_HOME
    ```  
+
    ![](assets/db/software/capture_25-09-22_13-45-02.png)  
 
-3. Download [Oracle Database 19c](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html#license-lightbox) and open a terminal in the download folder.  
+3. Download [Oracle Database 19c](https://www.oracle.com/database/technologies/oracle19c-linux-downloads.html).  
     ![](assets/db/software/capture_25-09-22_13-46-25.png)  
     ![](assets/db/software/capture_25-09-22_13-46-36.png)  
     ![](assets/db/software/capture_25-09-22_13-47-04.png)  
     ![](assets/db/software/capture_25-09-22_13-47-17.png)  
     ![](assets/db/software/capture_25-09-22_13-47-30.png)  
-    ![](assets/db/software/capture_25-09-22_13-51-44.png)  
-    ![](assets/db/software/capture_25-09-22_13-52-00.png)  
 
-4. Unzip the oracle database 19c zipped files in the home dir location:  
+4. Open a Terminal New Window and go to the Downloads folder.  
+
+   ```bash
+   cd Downloads/
+   ```
+
+5. Move the Oracle Database 19c zip file to oracle user home directory.  
+
+   ```bash
+   sudo mv LINUX.X64_193000_db_home.zip /u01/19c/oracle_base/oracle/db_home
+   ```  
+
+6. Get back to the oracle user terminal.  
+7. Unzip the oracle database 19c zipped files in the home dir location:  
+
     ```bash
-    unzip LINUX.X64_193000_db_home.zip -d $ORACLE_HOME
+    unzip LINUX.X64_193000_db_home.zip
     ```  
-    ![](assets/db/software/capture_25-09-22_13-52-27.png)  
 
-5. Run the following command:  
+8. Run the following command:  
+
     ```bash
     export CV_ASSUME_DISTID=OEL8.6
     ```  
+
     ![](assets/db/software/capture_25-09-22_13-54-19.png)  
 
-6. Run the installer.  
-   ```bash
-   ./runInstaller
-   ```  
-   ![](assets/db/software/capture_25-09-22_13-54-37.png)  
+9. Run the installer.  
 
-7. Select the Set up software only checkbox. Click on Next.  
+    ```bash
+    ./runInstaller
+    ```  
+
+    ![](assets/db/software/capture_25-09-22_13-54-37.png)  
+
+11. Select the Set up software only checkbox. Click on Next.  
    ![](assets/db/software/capture_25-09-22_13-55-12.png)  
 
-8. Select Single instance database installation. Click on Next.  
+12. Select Single instance database installation. Click on Next.  
     ![](assets/db/software/capture_25-09-22_13-55-35.png)  
 
-9.  Select Enterprise Edition. Click on Next.  
+13. Select Enterprise Edition. Click on Next.  
     ![](assets/db/software/capture_25-09-22_13-56-01.png)  
 
-10. Click on Next.  
+14. Click on Next.  
     ![](assets/db/software/capture_25-09-22_13-56-22.png)  
 
-11. Click on Next.  
+15. Click on Next.  
     ![](assets/db/software/capture_25-09-22_13-56-40.png)  
 
-12. Click on Next.  
+16. Click on Next.  
     ![](assets/db/software/capture_25-09-22_13-57-01.png)  
 
-13. If any warnings, click on it, and click on Fix and Check Again.  
+17. If any warnings, click on it, and click on Fix and Check Again.  
     ![](assets/db/software/capture_25-09-22_13-57-28.png)  
 
-14. Copy the path to the script and run it as root.  
+18. Copy the path to the script and run it as root.  
     ![](assets/db/software/capture_25-09-22_13-57-48.png)  
     ![](assets/db/software/capture_25-09-22_13-58-23.png)  
     ![](assets/db/software/capture_25-09-22_13-58-42.png)  
 
-15. Get back to the installation and click on OK.  
+19. Get back to the installation and click on OK.  
     ![](assets/db/software/capture_25-09-22_13-59-01.png)  
 
-16. Click on Install.  
+20. Click on Install.  
     ![](assets/db/software/capture_25-09-22_13-59-13.png)  
 
-17. When prompt to run root scripts. Copy the path to the script and run it as root.  
+21. When prompt to run root scripts. Copy the path to the script and run it as root.  
     ![](assets/db/software/capture_25-09-22_14-01-07.png)  
     ![](assets/db/software/capture_25-09-22_14-02-01.png)  
 
-18. Get back to the installation and click on OK.  
+22. Get back to the installation and click on OK.  
     ![](assets/db/software/capture_25-09-22_14-02-29.png)  
 
-19. Installation is completed.  
+23. Installation is completed.  
     ![](assets/db/software/capture_25-09-22_14-02-37.png)  
 
-## Create database using dbca.
+## Create database using dbca
+
 ___
+
 1. Open the DataBase Configuration Assistant.  
+
    ```bash
    dbca
    ```  
+
     ![](assets/db/instance/capture_25-09-22_14-26-58.png)  
 
 2. Select Create a Database and click on Next.  
@@ -835,11 +1023,11 @@ ___
     ![](assets/db/instance/capture_25-09-22_14-30-39.png)  
     ![](assets/db/instance/capture_25-09-22_14-30-53.png)  
     ![](assets/db/instance/capture_25-09-22_14-31-06.png)  
-   
+
 8. Click on Next.  
     ![](assets/db/instance/capture_25-09-22_14-31-42.png)  
 
-9.  Click on Next.  
+9. Click on Next.  
     ![](assets/db/instance/capture_25-09-22_14-32-25.png)  
 
 10. Set a SGA Size of 529 MB and a PGA Size of 100 MB.  
@@ -866,26 +1054,34 @@ ___
 17. The Database is created.  
     ![](assets/db/instance/capture_25-09-22_15-07-52.png)  
 
-## Verifying the installation.
+## Verifying the installation
+
 ___
+
 1. Eviroment.  
+
    ```bash
    . oraenv
    orcl
    ```  
+
    ![](assets/db/instance/capture_25-09-22_15-14-36.png)  
 
 2. Login in SQL*Plus.  
+
    ```bash
    sqlplus
    sys as sysdba
    oracle
    ```  
+
     ![](assets/db/instance/capture_25-09-22_15-15-08.png)  
 
 3. Test the following queries.  
+
    ```sql
    select instance_name from v$instance;
    select name from v$controlfile;
    ```  
+
    ![](assets/db/instance/capture_25-09-22_15-15-51.png)  
